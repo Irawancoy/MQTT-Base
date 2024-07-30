@@ -17,7 +17,7 @@ public class Test {
 
   private final MqttClient client;
 
-  @PostMapping
+  @PostMapping("test")
   public void test() throws MqttException {
     client.publish("test", new MqttMessage("Test".getBytes()));
   }
