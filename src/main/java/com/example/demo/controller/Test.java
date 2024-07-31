@@ -19,7 +19,13 @@ public class Test {
 
   @PostMapping("test")
   public void test() throws MqttException {
-    client.publish("test", new MqttMessage("Test".getBytes()));
+    if(client.isConnected()) {
+      var message = new MqttMessage("Hello World".getBytes());
+      client.publish("test", message);
+    }else {
+      throw new RuntimeException("MQTT Client is not connected");
+    }
+
   }
 
 }
